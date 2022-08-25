@@ -1,0 +1,6 @@
+.table-category tr > th:last-child, .table-category tr > tr:last-child{
+    width: 1%;
+    white-space: nowrap;
+    text-align: center;
+
+}

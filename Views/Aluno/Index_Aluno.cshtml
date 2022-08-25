@@ -1,0 +1,50 @@
+@using sistemaAcad.Models
+@model IEnumerable<AlunoModels>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Subtitulo = "Lista de Alunos";
+}
+
+<header class="d-flex jutify-content-between aling-items-center">
+    <div>
+        <h1>@ViewBag.Subtitulo</h1>
+    </div>
+</header>
+<hr>
+
+<partial name = "_Mensagem"></partial>
+
+@if(Model.Count() > 0){
+    <table class = "table table-hover">
+        <thread class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Turma</th>
+                <th>Optians</th>
+            </tr>
+        </thread>
+        <tbody>
+            @foreach(var aluno in Model){
+                <tr>
+                    <td> @aluno.Nome</td>
+                    <td> @aluno.Email</td>
+                    <td> @aluno.Turma.Nome</td>
+                    <td>
+                        <a asp-action = "Cadastrar" asp-route-id="@aluno.IdAluno" class="btn btn-sm btn-secondary">Alterar</a>
+
+                        <a asp-action = "Excluir" asp-route-id="@aluno.IdAluno" class="btn btn-sm btn-danger">Excluir</a>
+
+                        <a asp-action = "Detalhar" asp-route-id="@aluno.IdAluno" class="btn btn-sm btn-secondary">Detalhes</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}else{
+    <p>Não há alunos cadastradas no Sistema.</p>
+}
+<hr>
+<div>
+        <a asp-action = "Cadastrar" class="btn btn-outline-info"> Nova Aluno</a>
+    </div>

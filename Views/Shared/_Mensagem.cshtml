@@ -1,0 +1,17 @@
+@using sistemaAcad.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@if(TempData.ContainsKey("mensagem")){
+    var mensagem = MensagemModels.Desserializar(TempData["mensagem"].ToString());
+    @if(mensagem.Tipo == TipoMensagem.Erro){
+        <div class="alert alert-waring mt-3 alert-dismissible fade show" role="alert">
+            @mensagem.Texto
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }else{
+        <div class="alert alert-sucess mt-3 alert-dismissible fade show" role="alert">
+            @mensagem.Texto
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+}

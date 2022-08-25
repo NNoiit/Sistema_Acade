@@ -1,0 +1,66 @@
+@model AlunoModels
+@using sistemaAcad.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+        ViewBag.Subtitulo = "Perfil";
+        
+}
+
+
+<h1>@ViewBag.Subtitulo</h1>
+    
+<hr>
+
+<h2>@Model.Nome</h2>
+
+<form asp-action = "Cadastrar">
+
+
+    <input type="hidden" asp-for="@Model.IdAluno">
+    <div class="form-grup row">
+        <label asp-for="@Model.Nome">Nome:</label><br>
+        <input asp-for = "@Model.Nome" class="form-control" disabled>
+    </div>
+    
+    <div class="w-100"></div>
+    <div class="form-grup row">
+        <label asp-for="@Model.Email">Email:</label><br>
+        <input asp-for = "@Model.Email" class="form-control" disabled>
+    </div>
+
+    <div class="w-100"></div>
+    <div class="form-grup row">
+        <label asp-for="@Model.IdTurma">Turma:</label><br>
+        <select asp-for = "@Model.IdTurma" class="form-control" asp-items="@(IEnumerable<SelectListItem>)ViewBag.Turma" disabled></select>
+    </div>
+    <br>
+
+    <h2>Notas do alunx</h2>
+</form>
+<hr>
+<form action="Detalhar">
+<div class="w-100"></div>
+<div class="form-grup row">
+    <label>Nota p1:</label><br>
+    <input asp-for ="@Model.Nota.Nota1" class="form-control" disabled>
+</div>
+<div class="form-grup row">
+    <label>Nota p2:</label><br>
+    <input asp-for ="@Model.Nota.Nota2" class="form-control" disabled>
+</div>
+<label>Nota p3:</label><br>
+<div class="form-grup row">
+    <input asp-for ="@Model.Nota.Nota3" class="form-control" disabled>
+</div>
+
+
+<label>Media:</label><br>
+<div class="form-grup row">
+    <input asp-for = "@Model.Nota.IdNota" class="form-control" disabled>
+    
+</div>
+<hr>
+<a asp-action = "Index_Aluno" class="btn btn-outline-secondary">Voltar</a>
+<a asp-action = "Notas" class="btn btn-outline-info">Alterar Notas</a>
+</form>

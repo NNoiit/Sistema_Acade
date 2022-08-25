@@ -1,0 +1,60 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    var controllerAtual = ViewContext.RouteData.Values["controller"].ToString();
+    var classeMenuPrincipal = controllerAtual == "Home" ? "active" : "";
+    var classeMenuTurmas = controllerAtual == "Turma" ? "active" : "";
+    var classeMenuAlunos = controllerAtual == "Aluno" ? "active" : "";
+    var classeMenuProfessor = controllerAtual == "Professor" ? "active" : "";
+
+}
+
+<!DOCTYPE html>
+<html lang= "pt-br">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv = "X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CSS Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="wwwroot/css/style.css">
+        <!-- CSS Personalizado -->
+
+        <title>Turma :: @ViewBag.Subtitulo</title>
+    </head>
+    <body>
+
+        <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+
+            <div class = "container">
+                <a class = "navbar-brand" href="/">Home</a>
+                <button class= "navbar-toggler" typo="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class = "navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <div class="navbar-nav ms-auto">
+                        <ul class="navbar-nav">
+                            
+                        <a class = "nav-link @classeMenuPrincipal" asp-controller = "Home" asp-action = "Index">Principal</a>
+                        
+                        <a class = "nav-link @classeMenuTurmas" asp-controller = "Turma" asp-action = "Index">Turmas</a>
+                        
+                        <a class = "nav-link @classeMenuAlunos" asp-controller = "Aluno" asp-action = "Index_Aluno">Alunos</a>
+
+                        <a class = "nav-link @classeMenuProfessor" asp-controller = "Professor" asp-action = "Index_Professor">Professores</a>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <div class = "container mt-2">
+            @RenderBody()
+        </div>
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </body>
+</html>
